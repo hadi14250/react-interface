@@ -1,3 +1,4 @@
+import { BsTrash3 } from "react-icons/bs";
 
 function App() {
   return (
@@ -5,6 +6,7 @@ function App() {
       <h1>
         Hello World
       </h1>
+        <BsTrash3 />
     </div>
   );
 }
