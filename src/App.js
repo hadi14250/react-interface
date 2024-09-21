@@ -1,12 +1,12 @@
-import { BsTrash3 } from "react-icons/bs";
+import { BiArchive } from "react-icons/bi";
+import Search from "./components/Search"
 
 function App() {
   return (
     <div className="App container mx-auto mt-3 font-thin">
       <h1 className="text-5xl">
-        <BsTrash3 className="inline-block align-top" style={{ color: 'red' }} />
-        Hello World
-      </h1>
+        <BiArchive className="inline-block align-top" style={{ color: 'red' }} />Your Appointments</h1>
+        < Search />
     </div>
   );
 }
