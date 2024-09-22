@@ -1,7 +1,7 @@
 import { BiSearch, BiCaretDown, BiCheck } from "react-icons/bi";
 import { useState } from "react";
 
-const DropDown = ( {dropDown} ) => {
+const DropDown = ( {dropDown, sortBy, onSortByChange, orderBy, onOrderByChange} ) => {
   if (!dropDown)
       return(null)
   else
@@ -9,28 +9,28 @@ const DropDown = ( {dropDown} ) => {
       <div className="origin-top-right absolute right-0 mt-2 w-56
         rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
         <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-          <div
+          <div onClick={()=> onSortByChange("petName")}
             className="px-4 py-2 text-sm text-gray hover:bg-gray hover:text-gray flex justify-between cursor-pointer"
-            role="menuitem">Pet Name <BiCheck /></div>
-          <div
+            role="menuitem">Pet Name { (sortBy === "petName") &&  <BiCheck />}</div>
+          <div onClick={()=> onSortByChange("ownerName")}
             className="px-4 py-2 text-sm text-gray hover:bg-gray hover:text-gray flex justify-between cursor-pointer"
-            role="menuitem">Owner Name  <BiCheck /></div>
-          <div
+            role="menuitem">Owner Name  { (sortBy === "ownerName") && <BiCheck />}</div>
+          <div onClick={()=> onSortByChange("aptDate")}
             className="px-4 py-2 text-sm text-gray hover:bg-gray hover:text-gray flex justify-between cursor-pointer"
-            role="menuitem">Date <BiCheck /></div>
-          <div
+            role="menuitem">Date { (sortBy === "aptDate") && <BiCheck />}</div>
+          <div onClick={()=> onOrderByChange("asc")}
             className="px-4 py-2 text-sm text-gray hover:bg-gray hover:text-gray flex justify-between cursor-pointer border-gray-1 border-t-2"
-            role="menuitem">Asc <BiCheck /></div>
-          <div
+            role="menuitem">Asc { (orderBy === "asc") && <BiCheck />}</div>
+          <div onClick={()=> onOrderByChange("desc")}
             className="px-4 py-2 text-sm text-gray hover:bg-gray hover:text-gray flex justify-between cursor-pointer"
-            role="menuitem">Desc <BiCheck /></div>
+            role="menuitem">Desc { (orderBy === "desc") && <BiCheck />}</div>
         </div>
       </div>
     )
   }
   
 
-const Search = ( { query, onQueryChange } ) => {
+const Search = ( { query, onQueryChange, sortBy, onSortByChange, orderBy, onOrderByChange } ) => {
     let [dropDown, setDropDown] = useState(false)
         return (
             <div className="py-5">
@@ -58,7 +58,13 @@ const Search = ( { query, onQueryChange } ) => {
                     >
                       Sort By <BiCaretDown className="ml-2" />
                     </button>
-                    <DropDown dropDown={dropDown} />
+                    <DropDown
+                    dropDown={dropDown}
+                    sortBy={sortBy}
+                    onSortByChange={mySort => onSortByChange(mySort)}
+                    orderBy={orderBy}
+                    onOrderByChange={myOrder => onOrderByChange(myOrder)}
+                    />
                   </div>
                 </div>
               </div>
