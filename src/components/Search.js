@@ -30,10 +30,8 @@ const DropDown = ( {dropDown} ) => {
   }
   
 
-const Search = ()=> {
-
+const Search = ( { query, onQueryChange } ) => {
     let [dropDown, setDropDown] = useState(false)
-
         return (
             <div className="py-5">
               <div className="mt-1 relative rounded-md shadow-sm">
@@ -41,8 +39,14 @@ const Search = ()=> {
                   <BiSearch />
                   <label htmlFor="query" className="sr-only" />
                 </div>
-                <input type="text" name="query" id="query" value=""
-                  className="pl-8 rounded-md focus:ring-indigo focus:border-indigo block w-full sm:text-sm border-gray" placeholder="Search" />
+                <input
+                onChange={(event) => {onQueryChange(event.target.value)}}
+                type="text"
+                name="query"
+                id="query"
+                value={query}
+                className="pl-8 rounded-md focus:ring-indigo focus:border-indigo block w-full sm:text-sm border-gray" placeholder="Search"
+                />
                 <div className="absolute inset-y-0 right-0 flex items-center">
                   <div>
                     <button
